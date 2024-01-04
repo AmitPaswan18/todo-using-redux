@@ -11,9 +11,8 @@ import {
   UPDATE_TODO,
 } from "../redux/actions/todoActions";
 
-import Checkboxbutton from "./common/Checkboxbutton";
-import Button from "./common/Button";
-import RadioButton from "./common/RadioButton";
+import Button from "./common/Button.jsx";
+import RadioButton from "./common/RadioButton.jsx";
 
 import signal from "./icons/signal.svg";
 import Wifi from "./icons/Wifi.svg";
@@ -261,6 +260,7 @@ const TodoItems = () => {
                     <div className="flex justify-center text-sm md:text-xl font-semibold mt-4  lg:gap-4 gap-2 ">
                       <label className="px-2 md:px-5 " htmlFor="All">
                         <RadioButton
+                          type="radio"
                           label="All"
                           value="all"
                           checked={filter === "all"}
@@ -270,6 +270,7 @@ const TodoItems = () => {
 
                       <label className="px-2 md:px-5 " htmlFor="Complete">
                         <RadioButton
+                          type="radio"
                           className="px-2 md:px-10"
                           label="Complete"
                           value="complete"
@@ -279,6 +280,7 @@ const TodoItems = () => {
                       </label>
                       <label className="px-2 md:px-5 " htmlFor="Incomplete">
                         <RadioButton
+                          type="radio"
                           label="Incomplete"
                           value="incomplete"
                           checked={filter === "incomplete"}
@@ -319,11 +321,12 @@ const TodoItems = () => {
                                 </div>
                               </>
                             ) : (
-                              <div className="flex w-[375px] flex-row lg:mx-2 lg:gap-2 gap-0 lg:flex-col">
-                                <div className="pl-2 ">
+                              <div className="flex w-[375px] md:w-full flex-row lg:mx-2 lg:gap-2 gap-0 lg:flex-col">
+                                <div className="w-6 h-14">
                                   {filter === "all" ? (
-                                    <Checkboxbutton
-                                      className=" h-[28px] w-[28px] border-2 rounded-[50%] p-0 align-middle"
+                                    <RadioButton
+                                      type="checkbox"
+                                      className="h-8 w-6"
                                       checked={checkedItems[index] || false}
                                       onChange={() =>
                                         handleCheckboxChange(index)
@@ -413,14 +416,14 @@ const TodoItems = () => {
                   <Button
                     type="text"
                     onClick={handleActiveSubmit}
-                    className="bg-white text-skyblue">
+                    className="bg-slate-50 text-skyblue border-2 rounded-md p-2">
                     {" "}
                     Cancel
                   </Button>
                   <Button
                     type="submit"
                     onClick={handleSubmit}
-                    className="bg-white font-medium text-skyblue">
+                    className="bg-slate-100 font-medium text-skyblue border-2 rounded-md p-2">
                     {" "}
                     Done
                   </Button>
@@ -429,6 +432,7 @@ const TodoItems = () => {
             ) : null}
           </div>
         </div>
+
         <div className="w-[375px] md:w-full h-[34px] flex justify-center fixed bottom-0">
           <div className="h-[5px] w-[135px] bg-zinc-800"> </div>
         </div>
