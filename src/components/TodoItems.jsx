@@ -321,8 +321,8 @@ const TodoItems = () => {
                                 </div>
                               </>
                             ) : (
-                              <div className="flex w-[375px] md:w-full flex-row lg:mx-2 lg:gap-2 gap-0 lg:flex-col">
-                                <div className="w-6 h-14">
+                              <div className="flex w-[375px] md:w-full flex-row lg:mx-2 lg:gap-2 gap-0 lg:flex-col mx-2">
+                                <div>
                                   {filter === "all" ? (
                                     <RadioButton
                                       type="checkbox"
