@@ -1,22 +1,13 @@
+import PropTypes from "prop-types";
+
 const RadioButton = (props) => {
-  const {
-    value,
-    className,
-    children,
-    size,
-    onChange,
-    label,
-    checked,
-    type,
-    ...rest
-  } = props;
+  const { value, className, onChange, label, checked, type } = props;
 
   return (
     <>
       <div>
         <input
           type={type}
-          id={value}
           value={value}
           className={className}
           checked={checked}
@@ -27,5 +18,12 @@ const RadioButton = (props) => {
     </>
   );
 };
-
+RadioButton.propTypes = {
+  value: PropTypes.string,
+  label: PropTypes.string,
+  checked: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  type: PropTypes.string,
+  className: PropTypes.string,
+  onChange: PropTypes.func,
+};
 export default RadioButton;

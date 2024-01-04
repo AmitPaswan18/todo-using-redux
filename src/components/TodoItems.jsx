@@ -47,7 +47,6 @@ const TodoItems = () => {
     }
   };
 
-  console.log(todo);
   const filteredTodo = () => {
     switch (filter) {
       case "complete":
@@ -60,8 +59,6 @@ const TodoItems = () => {
         return todo.todo;
     }
   };
-
-  console.log(filteredTodo());
 
   const handleCheckboxChange = (id) => {
     setCheckedItems((prevCheckedItems) => {
