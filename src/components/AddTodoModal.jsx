@@ -57,8 +57,6 @@ const AddTodo = ({
   );
 };
 
-console.log();
-
 AddTodo.propTypes = {
   handleActiveSubmit: PropTypes.func,
   handleSubmit: PropTypes.func,
