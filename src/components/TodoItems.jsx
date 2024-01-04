@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { nanoid } from "nanoid";
 
-import { RiDeleteBin5Fill, RiEditBoxLine } from "react-icons/ri";
-import { GrAddCircle } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -11,13 +9,13 @@ import {
   UPDATE_TODO,
 } from "../redux/actions/todoActions";
 
-import Button from "./common/Button.jsx";
-import RadioButton from "./common/RadioButton.jsx";
+import ToggleSelectar from "./common/ToggleSelectar.jsx";
 
-import signal from "./icons/signal.svg";
-import Wifi from "./icons/Wifi.svg";
-import Battery from "./icons/Battery.svg";
-import TimeStyle from "./icons/timestyle.png";
+import Navbar from "./models/Navbar.jsx";
+import Header from "./models/Header.jsx";
+import AddTodo from "./models/AddTodo.jsx";
+import ToggleButton from "./models/ToggleButton.jsx";
+
 const TodoItems = () => {
   const [title, setTitle] = useState("");
   const [titleEdit, setTitleEdit] = useState("");
@@ -88,7 +86,6 @@ const TodoItems = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Form submitted");
     const isValidTitle = formValidation(title);
     if (!isValidTitle) {
       return;
@@ -189,47 +186,9 @@ const TodoItems = () => {
 
   return (
     <>
-      <div className=" h-[44px] fixed top-0 w-[375px]   lg:w-full z-50 ">
-        <img
-          className=" fixed top-[12px] left-[21px] w-[54px] h-[21px]"
-          src={TimeStyle}></img>
-
-        <img
-          className=" fixed w-[17px]  top-[17.67px] left-[293.67px] md:left-[88%]  h-[10.67px]"
-          src={signal}
-          alt=""
-        />
-
-        <img
-          className="w-[15.27px] fixed top-[17.33px] left-[315.69px] md:left-[92%] h-[10.97px] "
-          src={Wifi}
-          alt=""
-        />
-
-        <img
-          className="w-[24.33px] fixed top-[17.33px] left-[336px] md:left-[95%] h-[11.33px]"
-          src={Battery}
-          alt=""
-        />
-      </div>
-
+      <Navbar />
       <div className="w-[375px] relative top-[44px] md:w-full md:h-full h-[860px]">
-        <div className="w-[375px] flex md:justify-between h-[73px] md:w-full">
-          <div
-            id="today-title"
-            className="w-[65px]  md:w-[40px] md:h-[40px] text-3xl font-bold relative top-[16px] left-[16px] h-[41px]">
-            Today
-          </div>
-          <div className="w-[25px] h-[25px] md:w-[40px] md:h-[40px] relative top-[23px] left-[268px] md:left-[-3%]">
-            <GrAddCircle
-              onClick={handleActive}
-              color="#006CFF"
-              className="font-bold"
-              size={30}
-            />
-          </div>
-        </div>
-
+        <Header setActiveStatus={handleActive} />
         <div
           className="lg:w-full max-h-fit lg:h-screen "
           ref={containerRef}
@@ -239,24 +198,22 @@ const TodoItems = () => {
             className="flex border-2 justify-center md:items-start  md:w-10/12 w-[375px] md:w-max-96 md:h-full flex-col md:flex-row items-center mx-auto  rounded-md lg:p-2">
             <div className=" max-h-96 md:max-h-98 overflow-y-auto  w-[375px] flex justify-center md:w-11/12  ">
               {todo.length === 0 ? (
-                <>
-                  <div className=" flex flex-col justify-evenly items-center md:w-full md:z-100   lg:h-3/6 sm:h-1/2 ">
-                    <div className="font-sans lg:font-extrabold  md:text-5xl text-sm font-bold my-2">
-                      My Tasks
-                    </div>
-
-                    <div className=" text-md text-slate-500 opacity-40 py-2 ">
-                      {" "}
-                      You have No Task
-                    </div>
+                <div className=" flex flex-col justify-evenly items-center md:w-full md:z-100   lg:h-3/6 sm:h-1/2 ">
+                  <div className="font-sans lg:font-extrabold  md:text-5xl text-sm font-bold my-2">
+                    My Tasks
                   </div>
-                </>
+
+                  <div className=" text-md text-slate-500 opacity-40 py-2 ">
+                    {" "}
+                    You have No Task
+                  </div>
+                </div>
               ) : (
                 <div className=" left-10 lg:w-11/12 w-full max-h-fit">
                   <div className=" md:w-full w-[375px]">
                     <div className="flex justify-center text-sm md:text-xl font-semibold mt-4  lg:gap-4 gap-2 ">
                       <label className="px-2 md:px-5 " htmlFor="All">
-                        <RadioButton
+                        <ToggleSelectar
                           type="radio"
                           label="All"
                           value="all"
@@ -266,7 +223,7 @@ const TodoItems = () => {
                       </label>
 
                       <label className="px-2 md:px-5 " htmlFor="Complete">
-                        <RadioButton
+                        <ToggleSelectar
                           type="radio"
                           className="px-2 md:px-10"
                           label="Complete"
@@ -276,7 +233,7 @@ const TodoItems = () => {
                         />
                       </label>
                       <label className="px-2 md:px-5 " htmlFor="Incomplete">
-                        <RadioButton
+                        <ToggleSelectar
                           type="radio"
                           label="Incomplete"
                           value="incomplete"
@@ -321,7 +278,7 @@ const TodoItems = () => {
                               <div className="flex w-[375px] md:w-full flex-row lg:mx-2 lg:gap-2 gap-0 lg:flex-col mx-2">
                                 <div>
                                   {filter === "all" ? (
-                                    <RadioButton
+                                    <ToggleSelectar
                                       type="checkbox"
                                       className="h-8 w-6"
                                       checked={checkedItems[index] || false}
@@ -350,31 +307,14 @@ const TodoItems = () => {
                               )}
                             </div>
 
-                            <div className="flex w-[75px] flex-col md:flex-row ml-4 md:mt-1">
-                              <>
-                                <RiDeleteBin5Fill
-                                  className="m-1"
-                                  color="red"
-                                  opacity={0.6}
-                                  size={25}
-                                  style={{ cursor: "pointer" }}
-                                  onClick={() => deleteTodoItems(index)}
-                                />
-                              </>
-
-                              <RiEditBoxLine
-                                className="m-1"
-                                ref={editInputRef}
-                                opacity={0.6}
-                                size={25}
-                                style={{ cursor: "pointer" }}
-                                onClick={() =>
-                                  editIndex === index
-                                    ? handleEditSubmit()
-                                    : editTodo(index)
-                                }
-                              />
-                            </div>
+                            <ToggleButton
+                              editTodo={editTodo}
+                              handleEditSubmit={handleEditSubmit}
+                              index={index}
+                              editIndex={editIndex}
+                              editInputRef={editInputRef}
+                              deleteTodoItems={deleteTodoItems}
+                            />
                           </div>
                           <div className="h-[1px] border-1 border-zinc-200 ml-[50px] w-[325px]"></div>
                         </div>
@@ -384,52 +324,16 @@ const TodoItems = () => {
                 </div>
               )}
             </div>
-            {isactive == true ? (
-              <div className=" absolute top-[150px] border-2 bg-white rounded-md flex flex-col w-[340.62px] h-[297.24px] justify-center ">
-                <form
-                  className="h-[200px] w-full ml-4"
-                  name="todoform"
-                  onSubmit={handleSubmit}>
-                  {" "}
-                  <div className=" w-[87px] h-[41px] font-bold left-[30px] top-[109px] text-[18px] leading-[41px] tracking-[1%]">
-                    Add Todo
-                  </div>
-                  <textarea
-                    name="todoform"
-                    id=""
-                    cols="30"
-                    type="text"
-                    className="rounded-[10px] border-2 h-[148px] w-[298px] border-1 placeholder:text-start p-2"
-                    onChange={(e) => setTitle(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        handleSubmit(e);
-                      }
-                    }}
-                    value={title}
-                    rows="10"></textarea>
-                </form>
-                <div className=" flex justify-between ml-4 w-[298px] h-[44px] text-sky-600">
-                  <Button
-                    type="text"
-                    onClick={handleActiveSubmit}
-                    className="bg-slate-50 text-skyblue border-2 rounded-md p-2">
-                    {" "}
-                    Cancel
-                  </Button>
-                  <Button
-                    type="submit"
-                    onClick={handleSubmit}
-                    className="bg-slate-100 font-medium text-skyblue border-2 rounded-md p-2">
-                    {" "}
-                    Done
-                  </Button>
-                </div>
-              </div>
-            ) : null}
+
+            <AddTodo
+              isactive={isactive}
+              handleSubmit={handleSubmit}
+              setTitle={setTitle}
+              title={title}
+              handleActiveSubmit={handleActiveSubmit}
+            />
           </div>
         </div>
-
         <div className="w-[375px] md:w-full h-[34px] flex justify-center fixed bottom-0">
           <div className="h-[5px] w-[135px] bg-zinc-800"> </div>
         </div>

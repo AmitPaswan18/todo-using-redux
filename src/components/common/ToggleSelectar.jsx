@@ -1,24 +1,22 @@
 import PropTypes from "prop-types";
 
-const RadioButton = (props) => {
+const ToggleSelectar = (props) => {
   const { value, className, onChange, label, checked, type } = props;
 
   return (
-    <>
-      <div>
-        <input
-          type={type}
-          value={value}
-          className={className}
-          checked={checked}
-          onChange={onChange}
-        />
-        <label htmlFor={value}>{label}</label>
-      </div>
-    </>
+    <div>
+      <input
+        type={type}
+        value={value}
+        className={className}
+        checked={checked}
+        onChange={onChange}
+      />
+      <label htmlFor={value}>{label}</label>
+    </div>
   );
 };
-RadioButton.propTypes = {
+ToggleSelectar.propTypes = {
   value: PropTypes.string,
   label: PropTypes.string,
   checked: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
@@ -26,4 +24,4 @@ RadioButton.propTypes = {
   className: PropTypes.string,
   onChange: PropTypes.func,
 };
-export default RadioButton;
+export default ToggleSelectar;

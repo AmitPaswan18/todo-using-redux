@@ -14,4 +14,9 @@ function Button(props) {
   );
 }
 
+Button.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.string,
+};
+
 export default Button;
