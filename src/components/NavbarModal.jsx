@@ -1,7 +1,7 @@
-import signal from "../icons/signal.svg";
-import Wifi from "../icons/Wifi.svg";
-import Battery from "../icons/Battery.svg";
-import TimeStyle from "../icons/timestyle.png";
+import signal from "./icons/signal.svg";
+import Wifi from "./icons/Wifi.svg";
+import Battery from "./icons/Battery.svg";
+import TimeStyle from "./icons/timestyle.png";
 
 const Navbar = () => {
   return (

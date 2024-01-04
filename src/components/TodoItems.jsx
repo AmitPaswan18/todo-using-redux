@@ -11,10 +11,10 @@ import {
 
 import ToggleSelectar from "./common/ToggleSelectar.jsx";
 
-import Navbar from "./models/Navbar.jsx";
-import Header from "./models/Header.jsx";
-import AddTodo from "./models/AddTodo.jsx";
-import ToggleButton from "./models/ToggleButton.jsx";
+import Navbar from "./NavbarModal.jsx";
+import Header from "./HeaderModal.jsx";
+import AddTodo from "./AddTodoModal.jsx";
+import ToggleButton from "./ToggleButtonModal.jsx";
 
 const TodoItems = () => {
   const [title, setTitle] = useState("");
